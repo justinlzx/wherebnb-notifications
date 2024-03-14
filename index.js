@@ -1,6 +1,6 @@
 import dotenv from 'dotenv'
 import nodemailer from 'nodemailer';
-import { getBookingConfirmation, getHostNotification, getReviewNotification } from './src/emailText
+// import { getBookingConfirmation, getHostNotification, getReviewNotification } from './src/emailText
 
 dotenv.config();
 
