@@ -14,14 +14,19 @@ let mailTransporter = nodemailer.createTransport({
     }
 })
 
-export function sendNotification( details ) {
-    return new Promise((resolve, reject) => {
-        mailTransporter.sendMail(details, (err, info) => {
-            if(err) {
-                reject(err);
-            } else {
-                resolve(info);
-            }
+
+export function sendNotification(detailsArray) {
+    let promises = detailsArray.map(details => {
+        return new Promise((resolve, reject) => {
+            mailTransporter.sendMail(details, (err, info) => {
+                if(err) {
+                    reject(err);
+                } else {
+                    resolve(info);
+                }
+            });
         });
     });
+
+    return Promise.all(promises);
 }
