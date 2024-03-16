@@ -1,40 +1,37 @@
+import express from 'express';
+import { routes } from './routes/index.js';
+import chalk from 'chalk';
+import cors from 'cors';
 import dotenv from 'dotenv'
-import nodemailer from 'nodemailer';
-// import { getBookingConfirmation, getHostNotification, getReviewNotification } from './src/emailText
+dotenv.config()
 
-dotenv.config();
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use('/', routes)
+
+const ENV = process.env
+const NODE_PORT = ENV.NODE_PORT || 3006;
 
 
-//need to import and configure email_subject and email_text 
+app.use(
+  (
+    err,
+    _req,
+    res ,
+    _next ,
+  ) => {
+    console.error(err);
+    const code = typeof err.code === "number" ? err.code : 500;
+   
+  },
+);
 
-const email_subject = "hello"
-const email_text = "testing"
-//import nodemailer
-// const nodemailer = require('nodemailer')
 
-//create transporter, lets u send mail
-let mailTransporter = nodemailer.createTransport({
-    service: "gmail",
+app.listen(NODE_PORT, async () => {
+  console.log(chalk.bgGreen.white(`APP LISTENING ON PORT ${NODE_PORT}`))
+});
 
-    //this is email account 
-    auth: {
-        user: process.env.EMAIL_USERNAME, //email address
-        pass: process.env.EMAIL_PASSWORD //password 
-    }
-})
-console.log(process.env.EMAIL_USERNAME)
-let details = {
-    from: process.env.EMAIL_USERNAME,
-    to: process.env.TEST_EMAIL,
-    subject: email_subject,
-    text: email_text
-}
 
-//this makes u send the mail and takes a callback 
-mailTransporter.sendMail(details, (err)=>{
-    if(err){
-        console.log("error", err)
-    }else{
-        console.log("email has sent")
-    }
-}) 
