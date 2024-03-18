@@ -3,9 +3,6 @@ import nodemailer from 'nodemailer';
 
 dotenv.config();
 
-const email_subject = "hello"
-const email_text = "testing"
-
 let mailTransporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -27,6 +24,6 @@ export function sendNotification(detailsArray) {
             });
         });
     });
-
+    
     return Promise.all(promises);
 }

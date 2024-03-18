@@ -18,9 +18,13 @@ export const notifController = async (req, res) => {
         if( emailType == "bookingConfirmation" ){
             let travelerEmailSubject = "[WhereBnB] Your Booking Confirmation"
             let travelerEmailRecipient = payload.travelerEmail
+            let travelerName = payload.travelerName
+            let bookingDates = payload.bookingDates
+            let totalPrice = payload.totalPrice
             let travelerEmailContent = "<h1> Testing </h1>"
 
             let hostEmailSubject = "[WhereBnB] Your Property Has Been Booked"
+            let hostName = payload.hostName
             let hostEmailRecipient = payload.hostEmail
             let hostEmailContent = "<h1> Testing </h1>"
 
@@ -44,6 +48,7 @@ export const notifController = async (req, res) => {
 
         if( emailType == "hostReview" ){
             let emailSubject = "[WhereBnB] New Review Published"
+            let hostName = payload.hostName
             let emailRecipient = payload.recipient
             let emailContent = "<h1> Testing </h1>"
 
@@ -59,10 +64,13 @@ export const notifController = async (req, res) => {
 
         if( emailType == "checkIn" ){
             let travelerEmailSubject = "[WhereBnB] Check In Instructions"
+            let travelerName = payload.travelerName
             let travelerEmailRecipient = payload.travelerName
             let travelerEmailContent = "<h1> Testing </h1>"
+            let instructions = payload.instructions
 
             let hostEmailSubject = "[WhereBnB] Your Guests Have Checked In "
+            let hostname = payload.hostName
             let hostEmailRecipient = payload.hostName
             let hostEmailContent = "<h1> Testing </h1>"
 
