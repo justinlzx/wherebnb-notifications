@@ -2,8 +2,13 @@ import express from 'express';
 import { routes } from './routes/index.js';
 import chalk from 'chalk';
 import cors from 'cors';
+import { startConsumer } from './service/consumer.js'
 import dotenv from 'dotenv'
+
 dotenv.config()
+
+console.log("starting consumer")
+startConsumer()
 
 const app = express();
 

@@ -9,3 +9,4 @@ export const notifRoutes = express.Router();
 notifRoutes.post('/sendNotification', notifController) 
 
 
+ 
