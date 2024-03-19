@@ -7,7 +7,6 @@ dotenv.config();
 //send email 
 export const notifController = async (req, res) => {
 
-    
 
     try {
         const payload = req.body;
