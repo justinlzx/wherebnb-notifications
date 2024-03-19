@@ -1,5 +1,5 @@
 import express from 'express';
-import { routes } from './routes/index.js';
+// import { routes } from './routes/index.js';
 import chalk from 'chalk';
 import cors from 'cors';
 import { startConsumer } from './service/consumer.js'
@@ -15,7 +15,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/', routes)
+// app.use('/', routes)
 
 const ENV = process.env
 const NODE_PORT = ENV.NODE_PORT || 3006;
