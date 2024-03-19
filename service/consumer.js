@@ -1,14 +1,15 @@
 import amqp from 'amqplib';
 
 
-let msgContent = null
 
-export function getJsonMsg(msg){
+let jsonMsg = null
+
+export function parseMessage(msg){
     jsonMsg = JSON.parse(msg.content)
     return jsonMsg
 }
 
-export async function startConsumer() {
+export async function startConsumer(callback) {
 
     console.log("consumer started")
     console.log("connecting to rabbitmq...")
@@ -26,15 +27,15 @@ export async function startConsumer() {
 
         await channel.assertQueue(queueName, {durable: false});
         channel.consume(queueName, (msg) => {
-            getJsonMsg(msg)
-            
+
             console.log(" [x] Received %s", msg.content);
             channel.ack(msg);
-            
+            jsonMsg = parseMessage(msg);
+            callback(jsonMsg);
         });
     } catch (err) {
         console.error(err);
     }
 }
 
-export { msgContent }
+// export { msgContent }

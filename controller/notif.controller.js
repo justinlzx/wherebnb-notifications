@@ -1,19 +1,29 @@
 import Res from '../Res/response.js';
 import { sendNotification } from '../service/notif.service.js';
+import { startConsumer } from '../service/consumer.js';
+
+
 import dotenv from 'dotenv'
 dotenv.config();
 // import { emailTemplates } from '../emailTemplates' //revisit this pls 
+
+
+startConsumer((jsonMsg) => {
+    console.log('New message received:', jsonMsg);
+    let payload = jsonMsg
+});
+
 
 //send email 
 export const notifController = async (req, res) => {
 
 
     try {
-        const payload = req.body;
+        // const payload = req.body;
         const emailType = payload.emailType;
         let details = []
 
-        //check email type to send corresponding thing
+        //check email type to send corresponding template
         if( emailType == "bookingConfirmation" ){
             let travelerEmailSubject = "[WhereBnB] Your Booking Confirmation"
             let travelerEmailRecipient = payload.travelerEmail
