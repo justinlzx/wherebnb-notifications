@@ -1,25 +1,17 @@
 import Res from '../Res/response.js';
 import { sendNotification } from '../service/notif.service.js';
-import { startConsumer } from '../service/consumer.js';
+import { getLatestMessage, startConsumer } from '../service/consumer.js';
 
 
 import dotenv from 'dotenv'
 dotenv.config();
-// import { emailTemplates } from '../emailTemplates' //revisit this pls 
-
-
-startConsumer((jsonMsg) => {
-    console.log('New message received:', jsonMsg);
-    let payload = jsonMsg
-});
-
 
 //send email 
 export const notifController = async (req, res) => {
-
-
     try {
         // const payload = req.body;
+        console.log("getting latest message")
+        let payload = req.body
         const emailType = payload.emailType;
         let details = []
 

@@ -7,7 +7,7 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-console.log("starting consumer")
+console.log("starting consumer from index.js")
 startConsumer()
 
 const app = express();
