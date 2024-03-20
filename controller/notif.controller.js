@@ -15,13 +15,19 @@ export const notifController = async (req, res) => {
         const emailType = payload.emailType;
         let details = []
 
+        let travelerEmailRecipient = payload.travelerEmail
+        let travelerName = payload.travelerName
+        let bookingDates = payload.bookingDates
+        let totalPrice = payload.totalPrice
+        let country = payload.country
+        let propertyName = payload.propertyName
+        let instructions = payload.instructions
+        let hostName = payload.hostName
+        let hostEmailRecipient = payload.hostEmail
+
         //check email type to send corresponding template
         if( emailType == "bookingConfirmation" ){
             let travelerEmailSubject = "[WhereBnB] Booking Confirmation"
-            let travelerEmailRecipient = payload.travelerEmail
-            let travelerName = payload.travelerName
-            let bookingDates = payload.bookingDates
-            let totalPrice = payload.totalPrice
             let travelerEmailContent = `
                 <!DOCTYPE html>
                 <html>
@@ -44,8 +50,9 @@ export const notifController = async (req, res) => {
                 <body>
                     <div class="content">
                         <h1>Booking Confirmation</h1>
-                        <p>Hello ${travelerName},</p>
+                        <p>Hello ${travelerName}, you're going to ${country}!</p>
                         <p>Thank you for your booking. Here are your booking details:</p>
+                        <h3>${propertyName}</h3>
                         <p>Dates: ${bookingDates}</p>
                         <p>Total Price: ${totalPrice}</p>
                         <p>We look forward to hosting you!</p>
@@ -58,8 +65,6 @@ export const notifController = async (req, res) => {
                 `;
 
             let hostEmailSubject = "[WhereBnB] Your Property Has Been Booked"
-            let hostName = payload.hostName
-            let hostEmailRecipient = payload.hostEmail
             let hostEmailContent = "<h1> Testing </h1>"
 
             let travelerObject = {
@@ -68,29 +73,25 @@ export const notifController = async (req, res) => {
                 subject: travelerEmailSubject,
                 html: travelerEmailContent
             }
-
             let hostObject = {
                 from: process.env.EMAIL_USERNAME,
                 to: hostEmailRecipient,
                 subject: hostEmailSubject,
                 html: hostEmailContent
             }
-
             details.push(travelerObject)
             details.push(hostObject)
         }
 
         if( emailType == "hostReview" ){
             let emailSubject = "[WhereBnB] New Review Published"
-            let hostName = payload.hostName
-            let emailRecipient = payload.recipient
-            let emailContent = "<h1> Testing </h1>"
+            let reviewEmail = "<h1> Testing </h1>"
 
             let reviewObject = {
                 from: process.env.EMAIL_USERNAME,
-                to: emailRecipient,
+                to: hostEmailRecipient,
                 subject: emailSubject,
-                html: emailContent
+                html: reviewEmail
             }
 
             details.push(reviewObject)
@@ -98,14 +99,10 @@ export const notifController = async (req, res) => {
 
         if( emailType == "checkIn" ){
             let travelerEmailSubject = "[WhereBnB] Check In Instructions"
-            let travelerName = payload.travelerName
-            let travelerEmailRecipient = payload.travelerName
             let travelerEmailContent = "<h1> Testing </h1>"
-            let instructions = payload.instructions
+  
 
             let hostEmailSubject = "[WhereBnB] Your Guests Have Checked In "
-            let hostname = payload.hostName
-            let hostEmailRecipient = payload.hostName
             let hostEmailContent = "<h1> Testing </h1>"
 
             let travelerObject = {
@@ -114,7 +111,6 @@ export const notifController = async (req, res) => {
                 subject: travelerEmailSubject,
                 html: travelerEmailContent
             }
-
             let hostObject = {
                 from: process.env.EMAIL_USERNAME,
                 to: hostEmailRecipient,
