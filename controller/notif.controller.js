@@ -71,13 +71,25 @@ export const notifController = async (req, res) => {
                 from: process.env.EMAIL_USERNAME,
                 to: travelerEmailRecipient,
                 subject: travelerEmailSubject,
-                html: travelerEmailContent
+                html: travelerEmailContent,
+                // images to be attached here
+                attachments: [{
+                    filename: 'image.jpg',
+                    path: './image.jpg', // the path to the image in your project directory
+                    cid: 'emailbannerimage' // can be any unique string
+                }]
             }
             let hostObject = {
                 from: process.env.EMAIL_USERNAME,
                 to: hostEmailRecipient,
                 subject: hostEmailSubject,
-                html: hostEmailContent
+                html: hostEmailContent,
+                // images to be attached here
+                attachments: [{
+                    filename: 'image.jpg',
+                    path: './image.jpg', // the path to the image in your project directory
+                    cid: 'emailbannerimage' // can be any unique string
+                }]
             }
             details.push(travelerObject)
             details.push(hostObject)
