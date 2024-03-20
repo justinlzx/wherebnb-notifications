@@ -1,6 +1,6 @@
 import Res from '../Res/response.js';
 import { sendNotification } from '../service/notif.service.js';
-import { getLatestMessage, startConsumer } from '../service/consumer.js';
+import { startConsumer } from '../service/consumer.js';
 
 
 import dotenv from 'dotenv'
@@ -17,12 +17,45 @@ export const notifController = async (req, res) => {
 
         //check email type to send corresponding template
         if( emailType == "bookingConfirmation" ){
-            let travelerEmailSubject = "[WhereBnB] Your Booking Confirmation"
+            let travelerEmailSubject = "[WhereBnB] Booking Confirmation"
             let travelerEmailRecipient = payload.travelerEmail
             let travelerName = payload.travelerName
             let bookingDates = payload.bookingDates
             let totalPrice = payload.totalPrice
-            let travelerEmailContent = "<h1> Testing </h1>"
+            let travelerEmailContent = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                        }
+                        .content {
+                            padding: 20px;
+                        }
+                        .footer {
+                            padding: 20px;
+                            text-align: center;
+                            font-size: 0.8em;
+                            color: #888;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="content">
+                        <h1>Booking Confirmation</h1>
+                        <p>Hello ${travelerName},</p>
+                        <p>Thank you for your booking. Here are your booking details:</p>
+                        <p>Dates: ${bookingDates}</p>
+                        <p>Total Price: ${totalPrice}</p>
+                        <p>We look forward to hosting you!</p>
+                    </div>
+                    <div class="footer">
+                        <p>This is an automated message. Please do not reply.</p>
+                    </div>
+                </body>
+                </html>
+                `;
 
             let hostEmailSubject = "[WhereBnB] Your Property Has Been Booked"
             let hostName = payload.hostName

@@ -10,10 +10,6 @@ export function parseMessage(msg){
     return jsonMsg
 }
 
-export function getLatestMessage() {
-    return jsonMsg;
-}
-
 export async function startConsumer() {
 
     console.log("consumer started")
@@ -30,7 +26,7 @@ export async function startConsumer() {
         console.log("channel created")
         let queueName = "notifQueue"
 
-        await channel.assertQueue(queueName, {durable: false});
+        await channel.assertQueue(queueName, {durable: true});
         channel.consume(queueName, (msg) => {
             console.log(" [x] Received %s", msg.content);
             channel.ack(msg);
@@ -42,7 +38,6 @@ export async function startConsumer() {
             status: function() { return this; },  // Return this for chaining
             json: function(err) { console.error(err); }
         };
-
 
         // Call the controller function 
         notifController(req, res);
