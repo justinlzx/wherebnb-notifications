@@ -51,8 +51,9 @@ export const notifController = async (req, res) => {
                     <div class="content">
                         <h1>Booking Confirmation</h1>
                         <p>Hello ${travelerName}, you're going to ${country}!</p>
-                        <p>Thank you for your booking. Here are your booking details:</p>
+                        <p>Here are your booking details:</p>
                         <h3>${propertyName}</h3>
+                        <p>Country: ${country}</p>
                         <p>Dates: ${bookingDates}</p>
                         <p>Total Price: ${totalPrice}</p>
                         <p>We look forward to hosting you!</p>
