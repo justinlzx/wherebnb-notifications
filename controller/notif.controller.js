@@ -75,10 +75,16 @@ export const notifController = async (req, res) => {
                 html: travelerEmailContent,
                 // images to be attached here
                 attachments: [{
-                    filename: 'image.jpg',
-                    path: './image.jpg', // the path to the image in your project directory
-                    cid: 'emailbannerimage' // can be any unique string
-                }]
+                    filename: 'bookingsuccess.jpg',
+                    path: '../assets/bookingsuccess.jpg', // the path to the image in your project directory
+                    cid: 'bookingsuccessjpg' // can be any unique string
+                },
+                {
+                    filename: 'long-logo.png',
+                    path: '../assets/long-logo.png', // the path to image2.jpg in your project directory
+                    cid: 'longlogopng' // a unique CID for the second image
+                }
+            ]
             }
             let hostObject = {
                 from: process.env.EMAIL_USERNAME,
@@ -87,10 +93,16 @@ export const notifController = async (req, res) => {
                 html: hostEmailContent,
                 // images to be attached here
                 attachments: [{
-                    filename: 'image.jpg',
-                    path: './image.jpg', // the path to the image in your project directory
-                    cid: 'emailbannerimage' // can be any unique string
-                }]
+                    filename: 'bookingsuccess.jpg',
+                    path: '../assets/bookingsuccess.jpg', // the path to the image in your project directory
+                    cid: 'bookingsuccessjpg' // can be any unique string
+                },
+                {
+                    filename: 'long-logo.png',
+                    path: '../assets/long-logo.png', // the path to image2.jpg in your project directory
+                    cid: 'longlogopng' // a unique CID for the second image
+                }
+            ]
             }
             details.push(travelerObject)
             details.push(hostObject)
