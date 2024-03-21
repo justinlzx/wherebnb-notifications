@@ -68,7 +68,7 @@ export const notifController = async (req, res) => {
                             </tr>
                             <tr>
                                 <td style="text-align: left;">Total Price:</td>
-                                <td style="text-align: right;">${totalPrice}</td>
+                                <td style="text-align: right;">$${totalPrice}</td>
                             </tr>
                         </table>
                         <p style="margin-top: 60px;"><b>Guest Instructions:</b> ${instructions}</p>
@@ -117,7 +117,7 @@ export const notifController = async (req, res) => {
                             </tr>
                             <tr>
                                 <td style="text-align: left;">Total Price:</td>
-                                <td style="text-align: right;">${totalPrice}</td>
+                                <td style="text-align: right;">$${totalPrice}</td>
                             </tr>
                         </table>
                         <p style="margin-top: 60px;"><b>Guest Instructions:</b> ${instructions}</p>
