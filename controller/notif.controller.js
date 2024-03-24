@@ -1,9 +1,5 @@
 import Res from '../Res/response.js';
 import { sendNotification } from '../service/notif.service.js';
-import { startConsumer } from '../service/consumer.js';
-// import { bookingTravelerTemplate } from '../assets/emailTemplates/bookingTraveler.js';
-// import { bookingHostTemplate } from '../assets/emailTemplates/bookingHost.js';
-
 
 import dotenv from 'dotenv'
 dotenv.config();
