@@ -193,7 +193,7 @@ export const notifController = async (req, res) => {
                     <img src="cid:reviewpng" alt="Review Image" style="max-width: 60%; height: auto; margin: 30px 0;">
                     <!-- <img src="cid:reviewpng" alt=""> -->
                     <h1 style="color: #333; margin: 0 0 10px 0;">Hello ${hostName},</h1>
-                    <p style="font-size: 24px; color: #333; margin: 0 0 30px 0;">a user has left you a review!</p>
+                    <p style="font-size: 24px; color: #333; margin: 0 0 30px 0;">a guest has left you a review!</p>
                     
                     <!-- Styled details of booking -->
                     <div style="text-align: left; padding: 40px;">
