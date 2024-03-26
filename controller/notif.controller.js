@@ -22,6 +22,8 @@ export const notifController = async (req, res) => {
         let instructions = payload.instructions
         let hostName = payload.hostName
         let hostEmailRecipient = payload.hostEmail
+        let reviewRating = 4 // to be edited
+        let reviewComments = "This place is very nice but very smelly! I like the fishes swimming in the ceiling though. hehe" // to be edited
 
         //check email type to send corresponding template
         if( emailType == "bookingConfirmation" ){
@@ -174,7 +176,64 @@ export const notifController = async (req, res) => {
 
         if( emailType == "hostReview" ){
             let emailSubject = "[WhereBnB] New Review Published"
-            let reviewEmail = "<h1> Testing </h1>"
+            let reviewEmail = `
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Booking Notification for Host</title>
+            </head>
+            <body style="text-align: center; font-family: Arial, sans-serif; color: #333; display: flex; justify-content: center;  margin: 0; padding: 0; ">
+                <div style="background-color: #fff; padding: 40px; box-sizing: border-box; max-width: 40%">
+                    <div style="text-align: left;">
+                        <img src="cid:longlogopng" alt="Logo" style="width: 120px;">
+                        <!-- <img src="cid:longlogopng" alt=""> -->
+                    </div>
+                    <img src="cid:reviewpng" alt="Review Image" style="max-width: 60%; height: auto; margin: 30px 0;">
+                    <!-- <img src="cid:reviewpng" alt=""> -->
+                    <h1 style="color: #333; margin: 0 0 10px 0;">Hello ${hostName},</h1>
+                    <p style="font-size: 24px; color: #333; margin: 0 0 30px 0;">a user has left you a review!</p>
+                    
+                    <!-- Styled details of booking -->
+                    <div style="text-align: left; padding: 40px;">
+                        <h3>Review details:</h3>
+                        <h3>${propertyName}</h3>
+                        <table style="width: 100%;">
+                            <tr>
+                                <td style="text-align: left;">Guest Name:</td>
+                                <td style="text-align: right;">${travelerName}</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">Dates:</td>
+                                <td style="text-align: right;">${bookingDates}</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">Rating:</td>
+                                <td style="text-align: right;">${reviewRating} <img src="cid:starpng" alt="" style="vertical-align: middle; height: 15px; margin-left: 5 px;"></td>
+                                        <!-- <img src="cid:starpng" alt=""> -->
+                            </tr>
+                            <tr>
+                                <td style="text-align: left; padding-top: 20px;">Comments:</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <div style="background-color: #f2f2f2; border-radius: 8px; padding: 20px; margin-top: 10px;">
+                                        ${reviewComments}
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    
+                    <div style="background-color: #f0f0f0; padding: 10px; text-align: center;">
+                        <p style="font-size: 12px; color: #777;">This is an automated message. Please do not reply.</p>
+                    </div>
+                </div>
+            </body>
+            </html>
+            `
 
             let reviewObject = {
                 from: process.env.EMAIL_USERNAME,
@@ -183,14 +242,19 @@ export const notifController = async (req, res) => {
                 html: reviewEmail,
                 // images to be attached here
                 attachments: [{
-                    filename: 'bookingsuccess.png',
-                    path: './assets/bookingsuccess.png', // the path to the image in your project directory
-                    cid: 'bookingsuccessjpg' // can be any unique string
+                    filename: 'review.png',
+                    path: './assets/review.png', // the path to the image in your project directory
+                    cid: 'reviewpng' // can be any unique string
                 },
                 {
                     filename: 'long-logo.png',
                     path: './assets/long-logo.png', // the path to image2.jpg in your project directory
                     cid: 'longlogopng' // a unique CID for the second image
+                },
+                {
+                    filename: 'star.png',
+                    path: './assets/star.png', // the path to image2.jpg in your project directory
+                    cid: 'starpng' // a unique CID for the second image
                 }
             ]
             }
