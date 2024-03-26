@@ -264,8 +264,46 @@ export const notifController = async (req, res) => {
 
         if( emailType == "checkIn" ){
             let travelerEmailSubject = "[WhereBnB] Check In Instructions"
-            let travelerEmailContent = "<h1> Testing </h1>"
-  
+            let travelerEmailContent = `
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Reservation Confirmation</title>
+            </head>
+            <body style="text-align: center; font-family: Arial, sans-serif; color: #333; margin: 0; padding: 0;">
+                <div style="background-color: #fff; padding: 40px; box-sizing: border-box;">
+                    <div style="text-align: left;">
+                        <img src="cid:longlogopng" alt="Logo" style="width: 120px;">
+                        <!-- <img src="cid:longlogopng" alt=""> -->
+                    </div>
+                    <img src="cid:checkinpng" alt="Checkin Image" style="max-width: 100%; height: 300px; margin: 30px 0;">
+                    <!-- <img src="cid:checkinpng" alt=""> -->
+                    <h1 style="color: #333; margin: 0 0 10px 0;">Welcome ${travelerName},</h1>
+                    <p style="font-size: 24px; color: #333; margin: 0 0 30px 0;">here are you self check-in instructions!</p>
+
+                    <!-- Unstyled details of booking -->
+                    <div style="margin: 0; display: flex; justify-content: center; align-items: center;">
+                        <div style="background-color: #f2f2f2; border-radius: 15px; max-width: 50%; padding: 40px; box-sizing: border-box; width: 100%; text-align: left;">
+                            <h2>${propertyName}</h2>
+                            <h3>${bookingDates}</h3>
+                            
+                            <p style="margin-top: 40px;"><b>Guest Instructions:</b></p>
+                            <div style="background-color: #fff; border-radius: 8px; padding: 20px; margin-top: 20px;">
+                                ${instructions} 
+                            </div>
+                            <p style="margin-top: 40px;"><b>We look forward to hosting you!</b></p>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div style="background-color: #f0f0f0; padding: 10px; text-align: center;">
+                    <p style="font-size: 12px; color: #777;">This is an automated message. Please do not reply.</p>
+                </div>
+            </body>
+            </html>
+            `
 
             let hostEmailSubject = "[WhereBnB] Your Guests Have Checked In "
             let hostEmailContent = "<h1> Testing </h1>"
@@ -277,9 +315,9 @@ export const notifController = async (req, res) => {
                 html: travelerEmailContent,
                 // images to be attached here
                 attachments: [{
-                    filename: 'bookingsuccess.png',
-                    path: './assets/bookingsuccess.png', // the path to the image in your project directory
-                    cid: 'bookingsuccessjpg' // can be any unique string
+                    filename: 'checkin.png',
+                    path: './assets/checkin.png', // the path to the image in your project directory
+                    cid: 'checkinpng' // can be any unique string
                 },
                 {
                     filename: 'long-logo.png',
@@ -295,9 +333,9 @@ export const notifController = async (req, res) => {
                 html: hostEmailContent,
                 // images to be attached here
                 attachments: [{
-                    filename: 'bookingsuccess.png',
-                    path: './assets/bookingsuccess.png', // the path to the image in your project directory
-                    cid: 'bookingsuccessjpg' // can be any unique string
+                    filename: 'checkin.png',
+                    path: './assets/checkin.png', // the path to the image in your project directory
+                    cid: 'checkinpng' // can be any unique string
                 },
                 {
                     filename: 'long-logo.png',
