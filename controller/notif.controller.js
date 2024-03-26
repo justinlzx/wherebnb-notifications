@@ -306,7 +306,46 @@ export const notifController = async (req, res) => {
             `
 
             let hostEmailSubject = "[WhereBnB] Your Guests Have Checked In "
-            let hostEmailContent = "<h1> Testing </h1>"
+            let hostEmailContent = `
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Check-In</title>
+            </head>
+            <body style="text-align: center; font-family: Arial, sans-serif; color: #333; margin: 0; padding: 0;">
+                <div style="background-color: #fff; padding: 40px; box-sizing: border-box;">
+                    <div style="text-align: left;">
+                        <img src="cid:longlogopng" alt="Logo" style="width: 120px;">
+                        <!-- <img src="cid:longlogopng" alt=""> -->
+                    </div>
+                    <img src="cid:checkinpng" alt="Checkin Image" style="max-width: 100%; height: 300px; margin: 30px 0;">
+                    <!-- <img src="cid:checkinpng" alt=""> -->
+                    <h1 style="color: #333; margin: 0 0 10px 0;">Hey ${hostName},</h1>
+                    <p style="font-size: 24px; color: #333; margin: 0 0 30px 0;">your guest has checked-in to their accommodation!</p>
+
+                    <!-- Unstyled details of booking -->
+                    <div style="margin: 0; display: flex; justify-content: center; align-items: center;">
+                        <div style="background-color: #f2f2f2; border-radius: 15px; max-width: 50%; padding: 40px; box-sizing: border-box; width: 100%; text-align: left;">
+                            <h2>${propertyName}</h2>
+                            <h3>${bookingDates}</h3>
+                            <h3>Guest name: ${travelerName}</h3>
+                            
+                            <p style="margin-top: 40px;"><b>Guest Instructions:</b></p>
+                            <div style="background-color: #fff; border-radius: 8px; padding: 20px; margin-top: 20px;">
+                                ${instructions} 
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div style="background-color: #f0f0f0; padding: 10px; text-align: center;">
+                    <p style="font-size: 12px; color: #777;">This is an automated message. Please do not reply.</p>
+                </div>
+            </body>
+            </html>
+            `
 
             let travelerObject = {
                 from: process.env.EMAIL_USERNAME,
