@@ -180,7 +180,19 @@ export const notifController = async (req, res) => {
                 from: process.env.EMAIL_USERNAME,
                 to: hostEmailRecipient,
                 subject: emailSubject,
-                html: reviewEmail
+                html: reviewEmail,
+                // images to be attached here
+                attachments: [{
+                    filename: 'bookingsuccess.png',
+                    path: './assets/bookingsuccess.png', // the path to the image in your project directory
+                    cid: 'bookingsuccessjpg' // can be any unique string
+                },
+                {
+                    filename: 'long-logo.png',
+                    path: './assets/long-logo.png', // the path to image2.jpg in your project directory
+                    cid: 'longlogopng' // a unique CID for the second image
+                }
+            ]
             }
 
             details.push(reviewObject)
@@ -198,13 +210,37 @@ export const notifController = async (req, res) => {
                 from: process.env.EMAIL_USERNAME,
                 to: travelerEmailRecipient,
                 subject: travelerEmailSubject,
-                html: travelerEmailContent
+                html: travelerEmailContent,
+                // images to be attached here
+                attachments: [{
+                    filename: 'bookingsuccess.png',
+                    path: './assets/bookingsuccess.png', // the path to the image in your project directory
+                    cid: 'bookingsuccessjpg' // can be any unique string
+                },
+                {
+                    filename: 'long-logo.png',
+                    path: './assets/long-logo.png', // the path to image2.jpg in your project directory
+                    cid: 'longlogopng' // a unique CID for the second image
+                }
+            ]
             }
             let hostObject = {
                 from: process.env.EMAIL_USERNAME,
                 to: hostEmailRecipient,
                 subject: hostEmailSubject,
-                html: hostEmailContent
+                html: hostEmailContent,
+                // images to be attached here
+                attachments: [{
+                    filename: 'bookingsuccess.png',
+                    path: './assets/bookingsuccess.png', // the path to the image in your project directory
+                    cid: 'bookingsuccessjpg' // can be any unique string
+                },
+                {
+                    filename: 'long-logo.png',
+                    path: './assets/long-logo.png', // the path to image2.jpg in your project directory
+                    cid: 'longlogopng' // a unique CID for the second image
+                }
+            ]
             }
 
             details.push(travelerObject)
