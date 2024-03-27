@@ -24,6 +24,7 @@ export const notifController = async (req, res) => {
             let bookingEnd = payload.bookingEnd
             let totalPrice = payload.totalPrice
             let hostName = payload.hostName 
+
             let travelerEmailRecipient = payload.travelerEmail
             let hostEmailRecipient = payload.hostEmail
 
@@ -180,6 +181,10 @@ export const notifController = async (req, res) => {
             let bookingEnd = payload.bookingEnd
             let reviewRating = payload.reviewRating
             let reviewComments = payload.reviewComments
+            let travelerName = payload.travelerName
+
+            let hostEmailRecipient = payload.hostEmail
+        
 
             let emailSubject = "[WhereBnB] New Review Published"
             let reviewEmail = `
