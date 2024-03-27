@@ -274,6 +274,18 @@ export const notifController = async (req, res) => {
         }
 
         if( emailType == "checkIn" ){
+            //get stuff from payload
+            let travelerName = payload.travelerName
+            let propertyName = payload.propertyName
+            let hostName = payload.hostName
+            let hostEmailRecipient = payload.hostEmail
+            let travelerEmailRecipient = payload.travelerEmail
+            let instructions = payload.instructions
+            let bookingStart = payload.bookingStart
+            let bookingEnd = payload.bookingEnd
+
+
+
             let travelerEmailSubject = "[WhereBnB] Check In Instructions"
             let travelerEmailContent = `
             <!DOCTYPE html>
@@ -304,7 +316,7 @@ export const notifController = async (req, res) => {
                             <div style="background-color: #fff; border-radius: 8px; padding: 20px; margin-top: 20px;">
                                 ${instructions} 
                             </div>
-                            <p style="margin-top: 40px;"><b>We look forward to hosting you!</b></p>
+                            <p style="margin-top: 40px;"><b>Have a pleasant stay!</b></p>
                         </div>
                     </div>
                     
