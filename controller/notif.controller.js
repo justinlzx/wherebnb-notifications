@@ -13,20 +13,20 @@ export const notifController = async (req, res) => {
         const emailType = payload.emailType;
         let details = []
 
-        let travelerEmailRecipient = payload.travelerEmail
-        let travelerName = payload.travelerName
-        let bookingDates = payload.bookingDates
-        let totalPrice = payload.totalPrice
-        let country = payload.country
-        let propertyName = payload.propertyName
-        let instructions = payload.instructions
-        let hostName = payload.hostName
-        let hostEmailRecipient = payload.hostEmail
-        let reviewRating = 4 // to be edited
-        let reviewComments = "This place is very nice but very smelly! I like the fishes swimming in the ceiling though. hehe" // to be edited
 
         //check email type to send corresponding template
         if( emailType == "bookingConfirmation" ){
+            //get all required info from payload
+            let travelerName = payload.travelerName
+            let propertyName = payload.propertyName
+            let country = payload.country
+            let bookingStart = payload.bookingStart
+            let bookingEnd = payload.bookingEnd
+            let totalPrice = payload.totalPrice
+            let hostName = payload.hostName 
+            let travelerEmailRecipient = payload.travelerEmail
+            let hostEmailRecipient = payload.hostEmail
+
             let travelerEmailSubject = "[WhereBnB] Booking Confirmation"
             let travelerEmailContent = `
             <!DOCTYPE html>
@@ -62,15 +62,14 @@ export const notifController = async (req, res) => {
                             </tr>
                             <tr>
                                 <td style="text-align: left;">Dates:</td>
-                                <td style="text-align: right;">${bookingDates}</td>
+                                <td style="text-align: right;">${bookingStart} - ${bookingEnd}</td>
                             </tr>
                             <tr>
                                 <td style="text-align: left;">Total Price:</td>
                                 <td style="text-align: right;">$${totalPrice}</td>
                             </tr>
                         </table>
-                        <p style="margin-top: 60px;"><b>Guest Instructions:</b> ${instructions}</p>
-                        <p style="margin-top: 60px;"><b>We look forward to hosting you!</b></p>
+                        <p style="margin-top: 60px;"><b>Your host ${hostName} looks forward to hosting you!</b></p>
                     </div>
                 </div>
                 <div style="background-color: #f0f0f0; padding: 10px; text-align: center;">
@@ -111,14 +110,13 @@ export const notifController = async (req, res) => {
                             </tr>
                             <tr>
                                 <td style="text-align: left;">Dates:</td>
-                                <td style="text-align: right;">${bookingDates}</td>
+                                <td style="text-align: right;">${bookingStart} - ${bookingEnd}</td>
                             </tr>
                             <tr>
                                 <td style="text-align: left;">Total Price:</td>
                                 <td style="text-align: right;">$${totalPrice}</td>
                             </tr>
                         </table>
-                        <p style="margin-top: 60px;"><b>Guest Instructions:</b> ${instructions}</p>
                     </div>
                     
                     <div style="background-color: #f7f7f7; padding: 20px; text-align: center; margin-top: 40px;">
@@ -175,6 +173,14 @@ export const notifController = async (req, res) => {
         }
 
         if( emailType == "hostReview" ){
+            //pull info from payload
+            let hostName = payload.hostName
+            let propertyName = payload.propertyName
+            let bookingStart = payload.bookingStart
+            let bookingEnd = payload.bookingEnd
+            let reviewRating = payload.reviewRating
+            let reviewComments = payload.reviewComments
+
             let emailSubject = "[WhereBnB] New Review Published"
             let reviewEmail = `
             <!DOCTYPE html>
@@ -206,7 +212,7 @@ export const notifController = async (req, res) => {
                             </tr>
                             <tr>
                                 <td style="text-align: left;">Dates:</td>
-                                <td style="text-align: right;">${bookingDates}</td>
+                                <td style="text-align: right;">${bookingStart} - ${bookingEnd}</td>
                             </tr>
                             <tr>
                                 <td style="text-align: left;">Rating:</td>
@@ -287,7 +293,7 @@ export const notifController = async (req, res) => {
                     <div style="margin: 0; display: flex; justify-content: center; align-items: center;">
                         <div style="background-color: #f2f2f2; border-radius: 15px; max-width: 50%; padding: 40px; box-sizing: border-box; width: 100%; text-align: left;">
                             <h2>${propertyName}</h2>
-                            <h3>${bookingDates}</h3>
+                            <h3>${bookingStart} - ${bookingEnd}</h3>
                             
                             <p style="margin-top: 40px;"><b>Guest Instructions:</b></p>
                             <div style="background-color: #fff; border-radius: 8px; padding: 20px; margin-top: 20px;">
@@ -329,7 +335,7 @@ export const notifController = async (req, res) => {
                     <div style="margin: 0; display: flex; justify-content: center; align-items: center;">
                         <div style="background-color: #f2f2f2; border-radius: 15px; max-width: 50%; padding: 40px; box-sizing: border-box; width: 100%; text-align: left;">
                             <h2>${propertyName}</h2>
-                            <h3>${bookingDates}</h3>
+                            <h3>${bookingStart} - ${bookingEnd}</h3>
                             <h3>Guest name: ${travelerName}</h3>
                             
                             <p style="margin-top: 40px;"><b>Guest Instructions:</b></p>
