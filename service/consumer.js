@@ -15,6 +15,9 @@ export async function startConsumer() {
     console.log("consumer started")
     console.log("connecting to rabbitmq...")
 
+    console.log('host:', process.env.RABBIT_HOST)
+    console.log('port:', process.env.RABBIT_PORT)
+
     try {
         const conn = await amqp.connect(`amqp://${process.env.RABBIT_HOST}:${process.env.RABBIT_PORT}`);
 
