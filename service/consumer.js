@@ -1,5 +1,8 @@
 import amqp from 'amqplib';
 import { notifController } from '../controller/notif.controller.js';
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 
 let jsonMsg = null
@@ -16,7 +19,7 @@ export async function startConsumer() {
     console.log("connecting to rabbitmq...")
 
     try {
-        const conn = await amqp.connect(`amqp://${process.env.RABBIT_HOST}:${process.env.RABBIT_PORT}`);
+        const conn = await amqp.connect(`amqp://${process.env.RABBIT_HOST}`);
 
         console.log("connected to rabbitmq")
         console.log("creating channel...")
