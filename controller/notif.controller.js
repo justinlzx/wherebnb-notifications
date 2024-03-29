@@ -418,4 +418,3 @@ export const notifController = async (req, res) => {
         return Res.errorResponse(res, error)
     };
 }
-

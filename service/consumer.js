@@ -16,7 +16,7 @@ export async function startConsumer() {
     console.log("connecting to rabbitmq...")
 
     try {
-        const conn = await amqp.connect('amqp://host.docker.internal');
+        const conn = await amqp.connect(`amqp://${process.env.RABBIT_HOST}:${process.env.RABBIT_PORT}`);
 
         console.log("connected to rabbitmq")
         console.log("creating channel...")
