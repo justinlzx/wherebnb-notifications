@@ -6,7 +6,9 @@ ARG RABBIT_PORT
 WORKDIR /app
 COPY package*.json .
 RUN npm install
+RUN apk add --no-cache bash
 COPY . .
 
-EXPOSE 3006
-CMD ["node", "index.js"]
+RUN chmod +x ./wait-for-rabbitmq.sh
+
+CMD [ "bash", "wait-for-rabbitmq.sh" ]

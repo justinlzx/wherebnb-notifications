@@ -58,10 +58,6 @@ export const notifController = async (req, res) => {
                         <h3>${propertyName}</h3>
                         <table style="width: 100%;">
                             <tr>
-                                <td style="text-align: left;">Country:</td>
-                                <td style="text-align: right;">${country}</td>
-                            </tr>
-                            <tr>
                                 <td style="text-align: left;">Dates:</td>
                                 <td style="text-align: right;">${bookingStart} - ${bookingEnd}</td>
                             </tr>
@@ -213,10 +209,9 @@ export const notifController = async (req, res) => {
                                 <td style="text-align: left;">Guest Name:</td>
                                 <td style="text-align: right;">${travelerName}</td>
                             </tr>
-
                             <tr>
                                 <td style="text-align: left;">Rating:</td>
-                                <td style="text-align: right;">${reviewRating} <img src="cid:starpng" alt="" style="vertical-align: middle; height: 15px; margin-left: 5 px;"></td>
+                                <td style="text-align: right;">${reviewRating.toFixed(1)} <img src="cid:starpng" alt="" style="vertical-align: middle; height: 15px; margin-left: 5 px;"></td>
                                         <!-- <img src="cid:starpng" alt=""> -->
                             </tr>
                             <tr>
