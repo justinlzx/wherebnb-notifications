@@ -177,8 +177,6 @@ export const notifController = async (req, res) => {
             //pull info from payload
             let hostName = payload.hostName
             let propertyName = payload.propertyName
-            let bookingStart = payload.bookingStart
-            let bookingEnd = payload.bookingEnd
             let reviewRating = payload.reviewRating
             let reviewComments = payload.reviewComments
             let travelerName = payload.travelerName
@@ -216,12 +214,8 @@ export const notifController = async (req, res) => {
                                 <td style="text-align: right;">${travelerName}</td>
                             </tr>
                             <tr>
-                                <td style="text-align: left;">Dates:</td>
-                                <td style="text-align: right;">${bookingStart} - ${bookingEnd}</td>
-                            </tr>
-                            <tr>
                                 <td style="text-align: left;">Rating:</td>
-                                <td style="text-align: right;">${reviewRating} <img src="cid:starpng" alt="" style="vertical-align: middle; height: 15px; margin-left: 5 px;"></td>
+                                <td style="text-align: right;">${reviewRating.toFixed(2)} <img src="cid:starpng" alt="" style="vertical-align: middle; height: 15px; margin-left: 5 px;"></td>
                                         <!-- <img src="cid:starpng" alt=""> -->
                             </tr>
                             <tr>
