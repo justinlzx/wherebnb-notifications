@@ -58,10 +58,6 @@ export const notifController = async (req, res) => {
                         <h3>${propertyName}</h3>
                         <table style="width: 100%;">
                             <tr>
-                                <td style="text-align: left;">Country:</td>
-                                <td style="text-align: right;">${country}</td>
-                            </tr>
-                            <tr>
                                 <td style="text-align: left;">Dates:</td>
                                 <td style="text-align: right;">${bookingStart} - ${bookingEnd}</td>
                             </tr>
