@@ -9,11 +9,7 @@ wherebnb-notifications is a service that consumes messages from RabbitMQ and sen
 
 ## Getting Started
 1. Clone the repository
-  
-  ```sh
-    git clone <link>
-    cd wherebnb-notifications
-  ```
+
 
 2. Create a `.env` file in the root directory
 
