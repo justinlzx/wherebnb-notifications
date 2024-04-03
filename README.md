@@ -21,12 +21,17 @@ wherebnb-notifications is a service that consumes messages from RabbitMQ and sen
     RABBIT_PORT = 5672
   ```
 
-3. Build and run the Docker container: 
+3. (a) Build and run the Docker container: 
 
     ```sh
     docker build -t wherebnb-notifications .
     docker run wherebnb-notifications
     ```
+3. (b) Run app on development server
+
+  ```sh
+    npm run dev
+  ```
 ## How It Works
 
 The microservice connects to RabbitMQ server and starts consuming messages from "notifQueue" queue. Each message should be a JSON object with the following structure:
