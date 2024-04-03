@@ -212,10 +212,6 @@ export const notifController = async (req, res) => {
                                 <td style="text-align: right;">${travelerName}</td>
                             </tr>
                             <tr>
-                                <td style="text-align: left;">Dates:</td>
-                                <td style="text-align: right;">${bookingStart} - ${bookingEnd}</td>
-                            </tr>
-                            <tr>
                                 <td style="text-align: left;">Rating:</td>
                                 <td style="text-align: right;">${reviewRating} <img src="cid:starpng" alt="" style="vertical-align: middle; height: 15px; margin-left: 5 px;"></td>
                                         <!-- <img src="cid:starpng" alt=""> -->
